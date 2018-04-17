@@ -1,0 +1,26 @@
+<div class="thumbnail col-lg-12 col-md-12 col-sm-12" >
+  <img src="http://placehold.it/800x300" alt="">
+  <br>
+  <h4 class="pull-right">{{product?.price}}元</h4>
+  <h4>{{product?.title}}</h4>
+  <span>{{product?.category}}</span>
+  <app-stars [rating]=[starAVG]></app-stars>
+  <p>{{product?.desc}}</p>
+  <div>
+    <button class="btn btn-success" (click)="isComment = !isComment">评论</button>
+  </div>
+  <div [hidden]="isComment">
+    <app-stars [readonly]="false"  [(rating)]="newStar"></app-stars>
+    <textarea cols="30" rows="3" [(ngModel)]="newComment"></textarea> <br>
+    <button class="btn btn-success" (click)="submitComment()">提交</button>
+  </div>
+  <div class="hui">
+    <div *ngFor="let comment of comments">
+      <br>
+      <h4 class="pull-right">{{comment.time}}</h4>
+      <h4>{{comment.user}}</h4>
+      <p>{{comment.content}}</p>
+      <app-stars [rating]=[comment.rating]></app-stars>
+    </div>
+  </div>
+</div>
